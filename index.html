@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Global Health Digest</title>
+<style>
+  :root {
+    color-scheme: light;
+    --ink: #1a1f26;
+    --ink-soft: #52606d;
+    --ink-faint: #8a94a1;
+    --paper: #fdfcfa;
+    --line: #e4e0d8;
+    --accent: #1f4d3d;
+    --news: #3a5a78;
+    --academic: #6b3f2e;
+    --institutional: #8a6d1a;
+    --tick: #1f4d3d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 28px 20px 80px; }
+  header {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  h1 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; margin: 0; }
+  .meta { font-size: 12.5px; color: var(--ink-faint); }
+  .demo-note {
+    font-size: 12px; color: var(--ink-soft); background: #f4f1ea;
+    border: 1px solid var(--line); border-radius: 6px;
+    padding: 8px 12px; margin-bottom: 20px; line-height: 1.5;
+  }
+  .list { display: flex; flex-direction: column; gap: 2px; }
+  .item {
+    display: flex; gap: 12px; padding: 14px 4px;
+    border-bottom: 1px solid var(--line);
+    transition: opacity 0.35s ease, transform 0.35s ease, max-height 0.35s ease, padding 0.35s ease, margin 0.35s ease;
+    max-height: 300px; overflow: hidden;
+  }
+  .item.clearing { opacity: 0; transform: translateX(6px); }
+  .item.gone { max-height: 0; padding-top: 0; padding-bottom: 0; border-bottom: none; margin: 0; }
+  .tick-wrap { flex-shrink: 0; padding-top: 2px; }
+  .tick {
+    width: 19px; height: 19px; border-radius: 50%;
+    border: 1.5px solid var(--ink-faint); background: none;
+    cursor: pointer; display: block; padding: 0; position: relative;
+  }
+  .tick:hover { border-color: var(--tick); }
+  .tick.checked { background: var(--tick); border-color: var(--tick); }
+  .tick.checked::after {
+    content: ""; position: absolute; left: 5px; top: 2px;
+    width: 6px; height: 10px; border: solid white;
+    border-width: 0 2px 2px 0; transform: rotate(40deg);
+  }
+  .body { flex: 1; min-width: 0; }
+  .row-top { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap; }
+  .tag {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+    padding: 2px 7px; border-radius: 999px; color: #fff;
+  }
+  .tag.news { background: var(--news); }
+  .tag.academic { background: var(--academic); }
+  .tag.institutional { background: var(--institutional); }
+  .age { font-size: 11.5px; color: var(--ink-faint); }
+  .headline { font-size: 15px; font-weight: 600; line-height: 1.35; margin: 0 0 4px; color: var(--ink); }
+  .summary { font-size: 13.5px; line-height: 1.5; color: var(--ink-soft); margin: 0 0 6px; }
+  .source-link { font-size: 12.5px; color: var(--accent); text-decoration: none; font-weight: 500; }
+  .source-link:hover { text-decoration: underline; }
+  .empty { text-align: center; color: var(--ink-faint); font-size: 13.5px; padding: 40px 10px; }
+  footer { margin-top: 22px; font-size: 11px; color: var(--ink-faint); text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Global Health Digest</h1>
+    <div class="meta" id="countMeta">— items</div>
+  </header>
+
+  <div class="demo-note">First push to the public site (2026-07-01). Same pool as the Cowork artifact. Pool caps at 10, tops up daily, drops items after 72 hours regardless of tick state. Add this page to your home screen for an app-like icon.</div>
+
+  <div class="list" id="list"></div>
+  <div class="empty" id="emptyState" style="display:none;">Nothing left to read. Come back tomorrow.</div>
+
+  <footer>Rolling 72-hour window · tick to clear early · state is local to this device</footer>
+</div>
+
+<script>
+  const now = Date.now();
+
+  const items = [
+    {"id":"2026-07-01-who-ebola-don","category":"institutional","headline":"WHO: Bundibugyo Ebolavirus outbreak remains a public health emergency of international concern","summary":"837 confirmed cases in DRC and 19 in Uganda as of mid-June. WHO assesses DRC risk as very high given continued spread into new health zones; Uganda risk assessed as high due to confirmed cross-border imported cases.","source":"WHO Disease Outbreak News","url":"https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON608","publishedAt":"2026-07-01T07:00:00Z"},
+    {"id":"2026-07-01-nejm-bundibugyo-review","category":"academic","headline":"NEJM review: clinical and public health responses to Bundibugyo virus disease","summary":"Review article covering the clinical picture and public health response to the 2026 Bundibugyo ebolavirus outbreak, published as the outbreak was ongoing.","source":"New England Journal of Medicine","url":"https://www.nejm.org/doi/full/10.1056/NEJMra2607216","publishedAt":"2026-07-01T04:00:00Z"},
+    {"id":"2026-07-01-cdc-mmwr-ebola-projections","category":"academic","headline":"CDC MMWR: modeled scenario projections for the Bundibugyo Ebola outbreak","summary":"CDC modeling report projecting outbreak trajectories under different response scenarios, intended to inform resource allocation for the ongoing DRC/Uganda response.","source":"CDC MMWR","url":"https://www.cdc.gov/mmwr/volumes/75/wr/mm7522e1.htm","publishedAt":"2026-07-01T01:00:00Z"},
+    {"id":"2026-06-30-who-yellow-fever-don","category":"institutional","headline":"WHO: yellow fever transmission continues across the Americas into 2026","summary":"Six countries reported 79 human infections plus multiple epizootics between 1 January and 26 May 2026, continuing the surge that began in 2025.","source":"WHO Disease Outbreak News","url":"https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON610","publishedAt":"2026-06-30T21:00:00Z"},
+    {"id":"2026-06-30-borno-cholera","category":"news","headline":"Cholera outbreak escalates across Borno State, Nigeria","summary":"Over 12,000 suspected cases and at least 95 deaths as of 17 June across seven LGAs, driven by overcrowded settlements and weak water/sanitation infrastructure. WHO, UNICEF and MSF are supporting the response as the rainy season intensifies transmission risk.","source":"UNICEF / ReliefWeb Nigeria Flash Update","url":"https://reliefweb.int/report/nigeria/unicef-nigeria-humanitarian-flash-update-cholera-outbreak-borno-state-07-june-2026","publishedAt":"2026-06-30T17:00:00Z"},
+    {"id":"2026-06-30-un-hiv-declaration","category":"institutional","headline":"UN adopts new Political Declaration on HIV/AIDS, targets ending AIDS by 2030","summary":"Adopted 149-8-14 at the 22-23 June High-Level Meeting. Sets a $21.9bn annual financing target by 2030, new treatment and prevention coverage milestones, and recommits to a 90% reduction in new infections and deaths.","source":"UNAIDS","url":"https://www.unaids.org/en/resources/presscentre/featurestories/2026/june/20260629_HLM_PD","publishedAt":"2026-06-30T13:00:00Z"},
+    {"id":"2026-06-30-us-bilateral-health-agreements","category":"news","headline":"US bilateral health agreements reach 32 countries, $20.3bn total","summary":"State Department has signed bilateral health funding agreements with 32 countries as of 2 June, combining $12.8bn in US investment with $7.5bn in partner co-investment. Latest signatories: Bolivia and Papua New Guinea.","source":"Devex","url":"https://www.devex.com/news/money-matters-who-funds-global-health-and-by-how-much-112429","publishedAt":"2026-06-30T09:00:00Z"},
+    {"id":"2026-06-30-ihme-lancet-financing","category":"academic","headline":"IHME/Lancet analysis: global health financing hits record high, historical gaps persist","summary":"New analysis finds overall global health financing at a record high, but flags that historical funding gaps affecting the poorest countries have not closed.","source":"IHME / The Lancet","url":"https://www.healthdata.org/news-events/newsroom/news-releases/lancet-global-health-financing-hits-record-high-historical-gaps","publishedAt":"2026-06-30T03:00:00Z"},
+    {"id":"2026-06-29-gavi-avma","category":"institutional","headline":"Gavi board to consider $189m package for African vaccine manufacturing","summary":"AVMA+ initiative, announced in May, aims to strengthen Africa's vaccine manufacturing ecosystem. Board consideration scheduled for July.","source":"Gavi, the Vaccine Alliance","url":"https://www.devex.com/news/inside-gavi-s-189-million-plan-to-boost-africa-s-vaccine-ecosystem-112721","publishedAt":"2026-06-29T21:00:00Z"},
+    {"id":"2026-06-29-globalfund-africacdc-mou","category":"institutional","headline":"Global Fund and Africa CDC sign MOU; Continental Immunisation Strategy launched","summary":"New Global Fund-Africa CDC memorandum signed at the World Health Assembly margins in May. Africa CDC also led the launch of a Continental Immunisation Strategy with the AU Commission, UNICEF, WHO, Gavi and PATH.","source":"The Global Fund / Africa CDC","url":"https://www.theglobalfund.org/en/updates/2026/2026-05-19-global-fund-africa-cdc-join-forces-stronger-self-reliant-health-systems/","publishedAt":"2026-06-29T13:00:00Z"}
+  ];
+
+  const EXPIRY_HOURS = 72;
+  const dismissedKey = "ghd_dismissed_v1";
+  const getDismissed = () => {
+    try { return JSON.parse(localStorage.getItem(dismissedKey) || "{}"); }
+    catch (e) { return {}; }
+  };
+  const dismissed = getDismissed();
+
+  const tagLabel = { news: "News", academic: "Academic", institutional: "Institutional" };
+
+  const ageLabel = (iso) => {
+    const hrs = (now - new Date(iso).getTime()) / 3600000;
+    if (hrs < 1) return "just now";
+    if (hrs < 24) return Math.round(hrs) + "h ago";
+    return Math.round(hrs / 24) + "d ago";
+  };
+
+  function isExpired(iso) {
+    return (now - new Date(iso).getTime()) / 3600000 >= EXPIRY_HOURS;
+  }
+
+  function render() {
+    const list = document.getElementById("list");
+    list.innerHTML = "";
+    const visible = items.filter(it => !dismissed[it.id] && !isExpired(it.publishedAt));
+
+    document.getElementById("countMeta").textContent =
+      visible.length + (visible.length === 1 ? " item" : " items") + " · rolling 72h window";
+    document.getElementById("emptyState").style.display = visible.length ? "none" : "block";
+
+    visible.forEach(it => {
+      const el = document.createElement("div");
+      el.className = "item";
+      el.id = "row-" + it.id;
+      el.innerHTML = `
+        <div class="tick-wrap">
+          <button class="tick" aria-label="Mark read" data-id="${it.id}"></button>
+        </div>
+        <div class="body">
+          <div class="row-top">
+            <span class="tag ${it.category}">${tagLabel[it.category]}</span>
+            <span class="age">${ageLabel(it.publishedAt)}</span>
+          </div>
+          <p class="headline">${it.headline}</p>
+          <p class="summary">${it.summary}</p>
+          <a class="source-link" href="${it.url}" target="_blank" rel="noopener">${it.source} →</a>
+        </div>
+      `;
+      list.appendChild(el);
+    });
+
+    list.querySelectorAll(".tick").forEach(btn => {
+      btn.addEventListener("click", () => onTick(btn.dataset.id));
+    });
+  }
+
+  function onTick(id) {
+    const row = document.getElementById("row-" + id);
+    const btn = row.querySelector(".tick");
+    btn.classList.add("checked");
+    row.classList.add("clearing");
+    const d = getDismissed();
+    d[id] = now;
+    localStorage.setItem(dismissedKey, JSON.stringify(d));
+    setTimeout(() => {
+      row.classList.add("gone");
+      setTimeout(render, 380);
+    }, 350);
+  }
+
+  render();
+</script>
+</body>
+</html>
