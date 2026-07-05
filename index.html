@@ -1,3 +1,10 @@
+<!-- Canonical shell for the global-health-digest live artifact.
+     Daily build: read data/pool.json, merge/curate, write the merged pool
+     back to pool.json, then regenerate this file with the pool as the
+     `items` array below (keep ids stable so per-device tick state still
+     applies), and call mcp__cowork__update_artifact with id
+     "global-health-digest". Do not change CSS/JS structure without
+     updating this template. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,7 +97,7 @@
     <div class="meta" id="countMeta">— items</div>
   </header>
 
-  <div class="demo-note">Updated 2026-07-03 · 3 new · 10 total</div>
+  <div class="demo-note">Updated 2026-07-04 · 6 new · 10 total</div>
 
   <div class="list" id="list"></div>
   <div class="empty" id="emptyState" style="display:none;">Nothing left to read. Come back tomorrow.</div>
@@ -102,97 +109,97 @@
   const now = Date.now();
 
   const items = [
-    {
-      "id": "2026-07-03-uganda-marburg",
-      "category": "news",
-      "headline": "Uganda reports Marburg virus disease outbreak amid ongoing Ebola response",
-      "summary": "Uganda notified WHO that it had detected Marburg virus disease in the west of the country, with two confirmed cases reported as of late June. The detection complicates the regional response to what is already among the largest Ebola outbreaks on record in Central Africa.",
-      "source": "STAT News",
-      "url": "https://www.statnews.com/2026/06/30/marburg-virus-cases-ugandan-ebola-outbreak-zone/",
-      "publishedAt": "2026-07-03T10:22:04Z"
-    },
-    {
-      "id": "2026-07-03-gavi-board-avma",
-      "category": "institutional",
-      "headline": "Gavi board approves $189m package to boost African vaccine manufacturing",
-      "summary": "At its 1-2 July meeting the Gavi board confirmed an additional US$189m beyond the US$1bn African Vaccine Manufacturing Accelerator, including US$139m to buy African-made vaccines and US$50m for Africa CDC, the African Medicines Agency and WHO. It also finalised Gavi 6.0 targets and a US$250m Resilience Mechanism for fragile settings.",
-      "source": "Gavi, the Vaccine Alliance",
-      "url": "https://www.gavi.org/news/media-room/gavi-board-meeting-underlines-commitment-country-sovereignty-fragility-health-security",
-      "publishedAt": "2026-07-03T10:22:04Z"
-    },
-    {
-      "id": "2026-07-03-cdc-h5n1-reporting",
-      "category": "news",
-      "headline": "CDC streamlines H5N1 avian flu reporting as human cases decline",
-      "summary": "The US CDC will stop posting animal detections on its main H5N1 page and move to monthly reporting of people monitored and tested, while continuing to report new human H5 cases. More than 18,600 people have been monitored and over 880 tested after exposure since the outbreak began.",
-      "source": "CIDRAP",
-      "url": "https://www.cidrap.umn.edu/avian-influenza-bird-flu/cdc-streamlines-h5n1-avian-flu-reporting",
-      "publishedAt": "2026-07-03T10:22:04Z"
-    },
-    {
-      "id": "2026-07-02-us-measles-elimination",
-      "category": "news",
-      "headline": "US has effectively lost measles elimination status, CIDRAP op-ed argues",
-      "summary": "The US logged 48 measles outbreaks in 2025 and another 30 in the first five-plus months of 2026, confirming 2,104 cases by 18 June, with the imported share of cases down to 6%, indicating transmission is now overwhelmingly domestic. The op-ed argues elimination has already been lost in substance, with PAHO's verification review postponed from April to November.",
-      "source": "CIDRAP",
-      "url": "https://www.cidrap.umn.edu/measles/cidrap-op-ed-call-it-what-it-us-has-lost-its-hold-measles-elimination",
-      "publishedAt": "2026-07-02T15:33:51Z"
-    },
-    {
-      "id": "2026-07-01-who-ebola-don",
-      "category": "institutional",
-      "headline": "WHO: Bundibugyo Ebolavirus outbreak remains a public health emergency of international concern",
-      "summary": "837 confirmed cases in DRC and 19 in Uganda as of mid-June. WHO assesses DRC risk as very high given continued spread into new health zones; Uganda risk assessed as high due to confirmed cross-border imported cases.",
-      "source": "WHO Disease Outbreak News",
-      "url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON608",
-      "publishedAt": "2026-07-01T07:00:00Z"
-    },
-    {
-      "id": "2026-07-01-nejm-bundibugyo-review",
-      "category": "academic",
-      "headline": "NEJM review: clinical and public health responses to Bundibugyo virus disease",
-      "summary": "Review article covering the clinical picture and public health response to the 2026 Bundibugyo ebolavirus outbreak, published as the outbreak was ongoing.",
-      "source": "New England Journal of Medicine",
-      "url": "https://www.nejm.org/doi/full/10.1056/NEJMra2607216",
-      "publishedAt": "2026-07-01T04:00:00Z"
-    },
-    {
-      "id": "2026-07-01-cdc-mmwr-ebola-projections",
-      "category": "academic",
-      "headline": "CDC MMWR: modeled scenario projections for the Bundibugyo Ebola outbreak",
-      "summary": "CDC modeling report projecting outbreak trajectories under different response scenarios, intended to inform resource allocation for the ongoing DRC/Uganda response.",
-      "source": "CDC MMWR",
-      "url": "https://www.cdc.gov/mmwr/volumes/75/wr/mm7522e1.htm",
-      "publishedAt": "2026-07-01T01:00:00Z"
-    },
-    {
-      "id": "2026-06-30-who-yellow-fever-don",
-      "category": "institutional",
-      "headline": "WHO: yellow fever transmission continues across the Americas into 2026",
-      "summary": "Six countries reported 79 human infections plus multiple epizootics between 1 January and 26 May 2026, continuing the surge that began in 2025.",
-      "source": "WHO Disease Outbreak News",
-      "url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON610",
-      "publishedAt": "2026-06-30T21:00:00Z"
-    },
-    {
-      "id": "2026-06-30-borno-cholera",
-      "category": "news",
-      "headline": "Cholera outbreak escalates across Borno State, Nigeria",
-      "summary": "Over 12,000 suspected cases and at least 95 deaths as of 17 June across seven LGAs, driven by overcrowded settlements and weak water/sanitation infrastructure. WHO, UNICEF and MSF are supporting the response as the rainy season intensifies transmission risk.",
-      "source": "UNICEF / ReliefWeb Nigeria Flash Update",
-      "url": "https://reliefweb.int/report/nigeria/unicef-nigeria-humanitarian-flash-update-cholera-outbreak-borno-state-07-june-2026",
-      "publishedAt": "2026-06-30T17:00:00Z"
-    },
-    {
-      "id": "2026-06-30-un-hiv-declaration",
-      "category": "institutional",
-      "headline": "UN adopts new Political Declaration on HIV/AIDS, targets ending AIDS by 2030",
-      "summary": "Adopted 149-8-14 at the 22-23 June High-Level Meeting. Sets a $21.9bn annual financing target by 2030, new treatment and prevention coverage milestones, and recommits to a 90% reduction in new infections and deaths.",
-      "source": "UNAIDS",
-      "url": "https://www.unaids.org/en/resources/presscentre/featurestories/2026/june/20260629_HLM_PD",
-      "publishedAt": "2026-06-30T13:00:00Z"
-    }
-  ];
+  {
+    "id": "2026-07-03-uganda-marburg",
+    "category": "news",
+    "headline": "Uganda reports Marburg virus disease outbreak amid ongoing Ebola response",
+    "summary": "Uganda notified WHO that it had detected Marburg virus disease in the west of the country, with two confirmed cases reported as of late June. The detection complicates the regional response to what is already among the largest Ebola outbreaks on record in Central Africa.",
+    "source": "STAT News",
+    "url": "https://www.statnews.com/2026/06/30/marburg-virus-cases-ugandan-ebola-outbreak-zone/",
+    "publishedAt": "2026-07-03T10:22:04Z"
+  },
+  {
+    "id": "2026-07-03-gavi-board-avma",
+    "category": "institutional",
+    "headline": "Gavi board approves $189m package to boost African vaccine manufacturing",
+    "summary": "At its 1-2 July meeting the Gavi board confirmed an additional US$189m beyond the US$1bn African Vaccine Manufacturing Accelerator, including US$139m to buy African-made vaccines and US$50m for Africa CDC, the African Medicines Agency and WHO. It also finalised Gavi 6.0 targets and a US$250m Resilience Mechanism for fragile settings.",
+    "source": "Gavi, the Vaccine Alliance",
+    "url": "https://www.gavi.org/news/media-room/gavi-board-meeting-underlines-commitment-country-sovereignty-fragility-health-security",
+    "publishedAt": "2026-07-03T10:22:04Z"
+  },
+  {
+    "id": "2026-07-03-cdc-h5n1-reporting",
+    "category": "news",
+    "headline": "CDC streamlines H5N1 avian flu reporting as human cases decline",
+    "summary": "The US CDC will stop posting animal detections on its main H5N1 page and move to monthly reporting of people monitored and tested, while continuing to report new human H5 cases. More than 18,600 people have been monitored and over 880 tested after exposure since the outbreak began.",
+    "source": "CIDRAP",
+    "url": "https://www.cidrap.umn.edu/avian-influenza-bird-flu/cdc-streamlines-h5n1-avian-flu-reporting",
+    "publishedAt": "2026-07-03T10:22:04Z"
+  },
+  {
+    "id": "2026-07-02-us-measles-elimination",
+    "category": "news",
+    "headline": "US has effectively lost measles elimination status, CIDRAP op-ed argues",
+    "summary": "The US logged 48 measles outbreaks in 2025 and another 30 in the first five-plus months of 2026, confirming 2,104 cases by 18 June, with the imported share of cases down to 6%, indicating transmission is now overwhelmingly domestic. The op-ed argues elimination has already been lost in substance, with PAHO's verification review postponed from April to November.",
+    "source": "CIDRAP",
+    "url": "https://www.cidrap.umn.edu/measles/cidrap-op-ed-call-it-what-it-us-has-lost-its-hold-measles-elimination",
+    "publishedAt": "2026-07-02T15:33:51Z"
+  },
+  {
+    "id": "2026-07-04-who-ebola-diagnostic-eul",
+    "category": "institutional",
+    "headline": "WHO lists first diagnostic test for Ebola Bundibugyo virus as DRC outbreak tops 1,400 cases",
+    "summary": "WHO added the first diagnostic test for Bundibugyo ebolavirus to its Emergency Use Listing on 2 July, as the DRC outbreak reached 1,406 confirmed cases and 438 deaths, now the largest recorded outbreak of this Ebola species.",
+    "source": "WHO",
+    "url": "https://www.who.int/news/item/02-07-2026-who-adds-first-diagnostic-test-for-ebola-bundibugyo-virus-to-its-emergency-use-listing",
+    "publishedAt": "2026-07-04T08:20:00Z"
+  },
+  {
+    "id": "2026-07-04-who-hantavirus-outbreak-over",
+    "category": "institutional",
+    "headline": "WHO declares cruise-ship-linked hantavirus outbreak over",
+    "summary": "WHO declared the Andes hantavirus outbreak linked to the M/V Hondius cruise ship over on 2 July, after the last of 317 high-risk contacts across 33 countries completed quarantine. Thirteen cases and three deaths were confirmed, a 23% case fatality ratio.",
+    "source": "WHO Disease Outbreak News",
+    "url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON611",
+    "publishedAt": "2026-07-04T08:20:00Z"
+  },
+  {
+    "id": "2026-07-04-sudan-cholera-ends",
+    "category": "news",
+    "headline": "Sudan declares its 18-month cholera outbreak over",
+    "summary": "Sudan's Ministry of Health declared the outbreak that began in July 2024 over after no cases were reported since 14 January. It sickened more than 100,000 people, with an estimated 2,400-3,000 deaths, worsened by conflict, displacement and damaged water infrastructure.",
+    "source": "CIDRAP",
+    "url": "https://www.cidrap.umn.edu/cholera/quick-takes-polio-2-nations-sudan-s-cholera-outbreak-ends-avian-flu-vaccine-trials-uk",
+    "publishedAt": "2026-07-04T08:20:00Z"
+  },
+  {
+    "id": "2026-07-04-globalfund-unitaid-20yr",
+    "category": "institutional",
+    "headline": "Global Fund marks 20 years of partnership with Unitaid",
+    "summary": "The two organisations marked two decades of collaboration on 2 July, crediting the partnership with accelerating scale-up of generic dolutegravir-based HIV treatment and other innovations across HIV, TB, malaria and COVID-19.",
+    "source": "The Global Fund",
+    "url": "https://www.theglobalfund.org/en/updates/2026/2026-07-02-global-fund-20-years-transformative-partnership-unitaid/",
+    "publishedAt": "2026-07-04T08:20:00Z"
+  },
+  {
+    "id": "2026-07-04-globalfund-lebanon-iraq-tb-hiv",
+    "category": "institutional",
+    "headline": "Global Fund approves emergency TB/HIV funding for Lebanon and Iraq",
+    "summary": "The Global Fund approved US$1.48m in emergency funding, running 1 July 2026 to 30 June 2027, to sustain TB and HIV diagnostics, treatment and outreach in Lebanon and Iraq, where regional conflict has displaced more than 15 million people and disrupted services.",
+    "source": "The Global Fund",
+    "url": "https://www.theglobalfund.org/en/updates/2026/2026-06-30-global-fund-approves-emergency-funding-maintain-tb-hiv-services-crisis-affected-lebanon-iraq/",
+    "publishedAt": "2026-07-04T08:20:00Z"
+  },
+  {
+    "id": "2026-07-04-nature-malaria-cd8-antigens",
+    "category": "academic",
+    "headline": "Nature study identifies cross-stage, cross-species malaria T cell antigens",
+    "summary": "Researchers identified 453 Plasmodium peptides conserved across parasite life stages and species, with two antigens inducing protective CD8+ T cell immunity in rodents, a potential basis for a universal malaria vaccine.",
+    "source": "Nature",
+    "url": "https://www.nature.com/articles/s41586-026-10730-1",
+    "publishedAt": "2026-07-04T08:20:00Z"
+  }
+];
 
   const EXPIRY_HOURS = 72;
   const dismissedKey = "ghd_dismissed_v1";
