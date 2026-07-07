@@ -9,12 +9,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Global Health Digest</title>
 <style>
   :root {
     color-scheme: light;
     --ink: #1a1f26;
-    --ink-soft: #52606d;
+    --ink-soft: #4b5763;
     --ink-faint: #8a94a1;
     --paper: #fdfcfa;
     --line: #e4e0d8;
@@ -25,14 +26,17 @@
     --tick: #1f4d3d;
   }
   * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body {
     margin: 0;
     background: var(--paper);
     color: var(--ink);
     font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+    line-height: 1.5;
   }
-  .wrap { max-width: 640px; margin: 0 auto; padding: 28px 20px 80px; }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 24px 18px calc(96px + env(safe-area-inset-bottom)); }
   header {
     border-bottom: 1px solid var(--line);
     padding-bottom: 14px;
@@ -41,53 +45,59 @@
     justify-content: space-between;
     align-items: baseline;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 4px 10px;
   }
-  h1 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; margin: 0; }
-  .meta { font-size: 12.5px; color: var(--ink-faint); }
+  h1 { font-size: 23px; font-weight: 600; letter-spacing: -0.01em; margin: 0; }
+  .meta { font-size: 13.5px; color: var(--ink-faint); }
   .demo-note {
-    font-size: 12px; color: var(--ink-soft); background: #f4f1ea;
-    border: 1px solid var(--line); border-radius: 6px;
-    padding: 8px 12px; margin-bottom: 20px; line-height: 1.5;
+    font-size: 14px; color: var(--ink-soft); background: #f4f1ea;
+    border: 1px solid var(--line); border-radius: 8px;
+    padding: 10px 14px; margin-bottom: 20px; line-height: 1.5;
   }
   .list { display: flex; flex-direction: column; gap: 2px; }
   .item {
-    display: flex; gap: 12px; padding: 14px 4px;
+    display: flex; gap: 14px; padding: 18px 2px;
     border-bottom: 1px solid var(--line);
     transition: opacity 0.35s ease, transform 0.35s ease, max-height 0.35s ease, padding 0.35s ease, margin 0.35s ease;
-    max-height: 300px; overflow: hidden;
+    max-height: 400px; overflow: hidden;
   }
   .item.clearing { opacity: 0; transform: translateX(6px); }
   .item.gone { max-height: 0; padding-top: 0; padding-bottom: 0; border-bottom: none; margin: 0; }
   .tick-wrap { flex-shrink: 0; padding-top: 2px; }
   .tick {
-    width: 19px; height: 19px; border-radius: 50%;
-    border: 1.5px solid var(--ink-faint); background: none;
+    width: 26px; height: 26px; border-radius: 50%;
+    border: 2px solid var(--ink-faint); background: none;
     cursor: pointer; display: block; padding: 0; position: relative;
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* Invisible 44px hit area for comfortable tapping on touch screens */
+  .tick::before {
+    content: ""; position: absolute; top: 50%; left: 50%;
+    width: 44px; height: 44px; transform: translate(-50%, -50%);
   }
   .tick:hover { border-color: var(--tick); }
   .tick.checked { background: var(--tick); border-color: var(--tick); }
   .tick.checked::after {
-    content: ""; position: absolute; left: 5px; top: 2px;
-    width: 6px; height: 10px; border: solid white;
-    border-width: 0 2px 2px 0; transform: rotate(40deg);
+    content: ""; position: absolute; left: 8px; top: 4px;
+    width: 6px; height: 11px; border: solid white;
+    border-width: 0 2.5px 2.5px 0; transform: rotate(40deg);
   }
   .body { flex: 1; min-width: 0; }
-  .row-top { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap; }
+  .row-top { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
   .tag {
-    font-size: 10px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
-    padding: 2px 7px; border-radius: 999px; color: #fff;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+    padding: 3px 9px; border-radius: 999px; color: #fff;
   }
   .tag.news { background: var(--news); }
   .tag.academic { background: var(--academic); }
   .tag.institutional { background: var(--institutional); }
-  .age { font-size: 11.5px; color: var(--ink-faint); }
-  .headline { font-size: 15px; font-weight: 600; line-height: 1.35; margin: 0 0 4px; color: var(--ink); }
-  .summary { font-size: 13.5px; line-height: 1.5; color: var(--ink-soft); margin: 0 0 6px; }
-  .source-link { font-size: 12.5px; color: var(--accent); text-decoration: none; font-weight: 500; }
+  .age { font-size: 12.5px; color: var(--ink-faint); }
+  .headline { font-size: 17.5px; font-weight: 600; line-height: 1.4; margin: 0 0 6px; color: var(--ink); letter-spacing: -0.005em; }
+  .summary { font-size: 15.5px; line-height: 1.55; color: var(--ink-soft); margin: 0 0 8px; }
+  .source-link { font-size: 14px; color: var(--accent); text-decoration: none; font-weight: 500; display: inline-block; padding: 4px 0; }
   .source-link:hover { text-decoration: underline; }
-  .empty { text-align: center; color: var(--ink-faint); font-size: 13.5px; padding: 40px 10px; }
-  footer { margin-top: 22px; font-size: 11px; color: var(--ink-faint); text-align: center; }
+  .empty { text-align: center; color: var(--ink-faint); font-size: 15px; padding: 48px 10px; }
+  footer { margin-top: 24px; font-size: 12.5px; color: var(--ink-faint); text-align: center; line-height: 1.5; }
 </style>
 </head>
 <body>
@@ -97,7 +107,7 @@
     <div class="meta" id="countMeta">— items</div>
   </header>
 
-  <div class="demo-note">Updated 2026-07-07 · 3 new · 10 total</div>
+  <div class="demo-note">Updated 2026-07-07 &middot; 5 new &middot; 15 total &middot; wider window today after volume raised to 15</div>
 
   <div class="list" id="list"></div>
   <div class="empty" id="emptyState" style="display:none;">Nothing left to read. Come back tomorrow.</div>
@@ -109,6 +119,51 @@
   const now = Date.now();
 
   const items = [
+  {
+    "id": "2026-07-07-ebola-drc-escalation",
+    "category": "institutional",
+    "headline": "DRC Ebola (Bundibugyo) outbreak passes 1,460 cases as transmission accelerates",
+    "summary": "WHO reports 1,460 confirmed cases and 452 deaths (case fatality ratio 30.9%) in the Democratic Republic of the Congo as of 1 July 2026, with about 38 new confirmed cases a day over the previous fortnight. No new cases have been reported in Uganda since 21 June.",
+    "source": "WHO Disease Outbreak News",
+    "url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON612",
+    "publishedAt": "2026-07-07T08:15:00Z"
+  },
+  {
+    "id": "2026-07-07-marburg-uganda-isolated-case",
+    "category": "news",
+    "headline": "Uganda detects isolated Marburg virus case during Ebola surveillance",
+    "summary": "Uganda notified WHO on 30 June 2026 of a single confirmed Marburg case in Kyegegwa District, a child under two, picked up through enhanced surveillance for the concurrent Ebola outbreak. Contacts are being monitored with no symptoms reported, and Ugandan authorities say there is no wider Marburg outbreak.",
+    "source": "STAT News",
+    "url": "https://www.statnews.com/2026/06/30/marburg-virus-cases-ugandan-ebola-outbreak-zone/",
+    "publishedAt": "2026-07-07T08:15:00Z"
+  },
+  {
+    "id": "2026-07-07-gavi-board-1-8bn",
+    "category": "institutional",
+    "headline": "Gavi board approves over US$1.8 billion, stepping up African vaccine manufacturing",
+    "summary": "Gavi's board, meeting 1-2 July 2026, approved more than US$1.8 billion covering African vaccine manufacturing, catching up children who missed routine shots, and pandemic preparedness. An extra US$189 million was added to the US$1 billion African Vaccine Manufacturing Accelerator, with US$50 million for Africa CDC, the African Medicines Agency and WHO.",
+    "source": "Gavi (via ReliefWeb)",
+    "url": "https://reliefweb.int/report/world/more-us-18-billion-support-african-vaccine-manufacturing-catching-missed-children-and-pandemic-preparedness-approved-gavi-board-steps-efforts-tackle-backsliding-and-fight-health-emergencies",
+    "publishedAt": "2026-07-07T08:15:00Z"
+  },
+  {
+    "id": "2026-07-07-mpox-clade-i-status",
+    "category": "institutional",
+    "headline": "Mpox clade I keeps declining in Africa but remains a continental emergency",
+    "summary": "WHO's latest multi-country mpox situation report shows the decline in clade I cases continuing through June 2026, with Madagascar now reporting the most (689 cases in the six weeks to 14 June) and other affected countries, including DRC, under 100 each. Africa CDC has kept its Public Health Emergency of Continental Security in place.",
+    "source": "WHO",
+    "url": "https://cdn.who.int/media/docs/default-source/_sage-2026/multi-country-outbreak-of-mpox--external-situation-report_63.pdf",
+    "publishedAt": "2026-07-07T08:15:00Z"
+  },
+  {
+    "id": "2026-07-07-eu-health-resilience",
+    "category": "news",
+    "headline": "EU launches Global Health Resilience Initiative through Global Gateway",
+    "summary": "The EU has announced a Global Health Resilience Initiative that steers its Global Gateway investment tool toward health, aiming to mobilise up to EUR 300 billion in investment. Health Policy Watch reports more than EUR 6 billion had already gone into health projects by the end of 2025.",
+    "source": "Health Policy Watch",
+    "url": "https://healthpolicy-watch.news/eu-global-health-resilience-initiative/",
+    "publishedAt": "2026-07-07T08:15:00Z"
+  },
   {
     "id": "2026-07-07-bangladesh-dengue-surge",
     "category": "news",
