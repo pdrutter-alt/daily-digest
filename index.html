@@ -107,7 +107,7 @@
     <div class="meta" id="countMeta">— items</div>
   </header>
 
-  <div class="demo-note">Updated 2026-07-14 &middot; 6 new &middot; 15 total</div>
+  <div class="demo-note">Updated 2026-07-16 · 9 new · 15 total</div>
 
   <div class="list" id="list"></div>
   <div class="empty" id="emptyState" style="display:none;">Nothing left to read. Come back tomorrow.</div>
@@ -119,6 +119,87 @@
   const now = Date.now();
 
   const items = [
+  {
+    "id": "2026-07-16-ebola-drc-700-deaths",
+    "category": "news",
+    "headline": "DRC Ebola outbreak passes 700 deaths, spreading faster than it can be tracked",
+    "summary": "The Bundibugyo-strain Ebola outbreak in the Democratic Republic of the Congo has reached close to 2,000 confirmed cases and more than 700 deaths, which WHO describes as the fastest-growing Ebola outbreak on record. About 80% of new cases are arising outside known contact lists and many patients are dying in their communities before reaching care; there is still no licensed vaccine or treatment for this Ebola species.",
+    "source": "NPR",
+    "url": "https://www.npr.org/2026/07/15/g-s1-133630/ebola-congo-deaths",
+    "publishedAt": "2026-07-16T08:06:09Z"
+  },
+  {
+    "id": "2026-07-16-sudan-cholera-alert",
+    "category": "institutional",
+    "headline": "WHO alert warns Sudan cholera outbreak could worsen with rains and conflict",
+    "summary": "WHO has issued a new alert over cholera in war-torn Sudan, with more than 1,330 confirmed cases and 114 deaths reported as of 10 July 2026, mainly across the Darfurs and Kordofans. The case-fatality rate is already about 13.7%, far above the 1% emergency threshold, and is expected to rise as the rainy season and restricted humanitarian access accelerate spread.",
+    "source": "UN News",
+    "url": "https://news.un.org/en/story/2026/07/1167913",
+    "publishedAt": "2026-07-16T08:06:09Z"
+  },
+  {
+    "id": "2026-07-16-global-fund-grant-cuts",
+    "category": "news",
+    "headline": "Global Fund to cut $1.4 billion from already-awarded grants across 100+ countries",
+    "summary": "Facing a replenishment shortfall, the Global Fund plans to cut about US$1.4 billion from grants it has already awarded, reductions that will hit more than 100 countries. Its 2026-2028 country allocations of roughly US$10.8 billion are the lowest since the 2020 funding cycle.",
+    "source": "Devex",
+    "url": "https://www.devex.com/news/devex-checkup-1-4b-global-fund-cuts-hit-over-100-countries-110462",
+    "publishedAt": "2026-07-16T08:06:09Z"
+  },
+  {
+    "id": "2026-07-16-uk-measles-third-death",
+    "category": "news",
+    "headline": "England records third measles death of 2026 as cases pass 880",
+    "summary": "The UK Health Security Agency reports 883 confirmed measles cases in England so far in 2026, alongside a third death, this time an adult with an underlying immunological condition following the deaths of two children the previous month. More than half of cases are in London, reflecting sub-optimal MMR coverage.",
+    "source": "CIDRAP",
+    "url": "https://www.cidrap.umn.edu/cyclospora/quick-takes-more-michigan-cyclospora-uk-measles-death-h5n1-avian-flu-cambodian-baby",
+    "publishedAt": "2026-07-16T08:06:09Z"
+  },
+  {
+    "id": "2026-07-16-america-first-health-mous",
+    "category": "news",
+    "headline": "US signs 33 bilateral health agreements under 'America First' global health strategy",
+    "summary": "A Think Global Health tracker finds the US had signed memoranda of understanding with 33 countries as of 6 July 2026 under its America First Global Health Strategy, shifting from traditional aid toward jointly financed bilateral arrangements after dissolving USAID, withdrawing from WHO and cutting foreign health assistance.",
+    "source": "Think Global Health (CFR)",
+    "url": "https://www.thinkglobalhealth.org/article/tracking-the-america-first-bilateral-health-agreements",
+    "publishedAt": "2026-07-16T08:06:09Z"
+  },
+  {
+    "id": "2026-07-16-nejm-menb-gonorrhoea",
+    "category": "academic",
+    "headline": "NEJM trial tests meningococcal B vaccine against gonorrhoea",
+    "summary": "A study published in the New England Journal of Medicine on 8 July 2026 evaluated the meningococcal B vaccine for preventing Neisseria gonorrhoeae infection, a vaccine-repurposing approach that has drawn interest given rising antimicrobial resistance in gonorrhoea.",
+    "source": "New England Journal of Medicine",
+    "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2516739",
+    "publishedAt": "2026-07-16T08:06:09Z"
+  },
+  {
+    "id": "2026-07-16-mpox-cladei-outside-africa",
+    "category": "institutional",
+    "headline": "Clade I mpox now transmitting in communities outside Africa",
+    "summary": "UK travel-health body NaTHNaC reports evidence of community transmission of clade I (including clade Ib) mpox outside the African region, with locally acquired cases in the US and parts of mainland Europe that have no travel link to countries with known clade Ib transmission.",
+    "source": "NaTHNaC (TravelHealthPro)",
+    "url": "https://travelhealthpro.org.uk/news/792/mpox-outbreak-community-transmission-of-clade-i-mpox-virus-outside-the-african-region",
+    "publishedAt": "2026-07-16T08:06:09Z"
+  },
+  {
+    "id": "2026-07-16-lancet-hiv-tb-children",
+    "category": "academic",
+    "headline": "Lancet Global Health review examines HIV exposure and childhood TB risk",
+    "summary": "A narrative review in The Lancet Global Health untangles the relationship between HIV exposure and tuberculosis in children, noting that as fewer children are born with HIV, a growing population of HIV-exposed but uninfected children faces distinct infection risks that health systems need to address.",
+    "source": "The Lancet Global Health",
+    "url": "https://www.thelancet.com/journals/langlo/article/PIIS2214-109X(25)00540-6/fulltext",
+    "publishedAt": "2026-07-16T08:06:09Z"
+  },
+  {
+    "id": "2026-07-16-h5n1-cdc-streamline",
+    "category": "news",
+    "headline": "CDC scales back H5N1 bird flu reporting as US human cases decline",
+    "summary": "The US CDC said it is streamlining its H5N1 avian influenza updates to reflect a current situation marked by declining human cases and fewer animal detections in the United States, signalling an easing of the domestic outbreak that spread widely through poultry and dairy cattle over the past year.",
+    "source": "CIDRAP",
+    "url": "https://www.cidrap.umn.edu/avian-influenza-bird-flu/cdc-streamlines-h5n1-avian-flu-reporting",
+    "publishedAt": "2026-07-16T08:06:09Z"
+  },
   {
     "id": "2026-07-14-marburg-uganda",
     "category": "news",
@@ -172,87 +253,6 @@
     "source": "The Global Fund",
     "url": "https://www.theglobalfund.org/en/updates/2026/2026-04-14-us-global-fund-expand-commitment-long-acting-hiv-prevention-country-rollout-lenacapavir-accelerates/",
     "publishedAt": "2026-07-14T08:05:00Z"
-  },
-  {
-    "id": "2026-07-11-ebola-drc-1792",
-    "category": "institutional",
-    "headline": "DRC Ebola (Bundibugyo) outbreak reaches 1,792 cases as spread continues",
-    "summary": "WHO reports 1,792 confirmed cases and 625 deaths in the Democratic Republic of the Congo as of 8 July 2026, with Ituri the worst-affected province; Uganda has recorded 20 confirmed cases and two deaths. WHO says the outbreak is still expanding, and a clinical trial of the monoclonal antibody MBP134 and the antiviral remdesivir began on 2 July.",
-    "source": "WHO Disease Outbreak News",
-    "url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON612",
-    "publishedAt": "2026-07-11T08:35:32Z"
-  },
-  {
-    "id": "2026-07-11-h5n1-spread",
-    "category": "institutional",
-    "headline": "H5N1 avian flu stays widespread as sporadic human cases mount",
-    "summary": "CDC reports A(H5) bird flu is widespread in wild birds worldwide and is driving poultry and US dairy-cattle outbreaks with sporadic human cases in dairy and poultry workers. The most recent poultry detection was a Pennsylvania game-bird farm of 29,300 birds on 2 July, and 12 human H5N1 infections, three fatal, were reported outside the US between August 2025 and June 2026.",
-    "source": "US CDC",
-    "url": "https://www.cdc.gov/bird-flu/situation-summary/index.html",
-    "publishedAt": "2026-07-11T08:35:32Z"
-  },
-  {
-    "id": "2026-07-11-us-measles-record",
-    "category": "institutional",
-    "headline": "US measles cases near 2026 record with half the year remaining",
-    "summary": "CDC data show 2,231 confirmed US measles cases as of 9 July 2026, just short of 2025's full-year total of 2,289, spread across 32 outbreaks with 93% of cases outbreak-associated. National MMR coverage has fallen to 92.5% in 2024-2025, below the 95% threshold needed for community immunity.",
-    "source": "US CDC",
-    "url": "https://www.cdc.gov/measles/data-research/index.html",
-    "publishedAt": "2026-07-11T08:35:32Z"
-  },
-  {
-    "id": "2026-07-11-globalfund-gavi-collaboration",
-    "category": "news",
-    "headline": "Global Fund and Gavi weigh closer collaboration amid replenishment shortfalls",
-    "summary": "With donor cuts squeezing both institutions, the Global Fund and Gavi are discussing combining certain administrative and operational functions. Gavi's 2026-2030 replenishment has secured just over US$9 billion against an US$11.9 billion target, while the Global Fund's eighth replenishment has raised US$11.34 billion so far.",
-    "source": "Aidspan (GFO)",
-    "url": "https://aidspan.org/Blog/view/32501/gavi_the_gff_and_the_global_fund_from_intention_to_impact",
-    "publishedAt": "2026-07-11T08:35:32Z"
-  },
-  {
-    "id": "2026-07-11-health-oda-cuts-oecd",
-    "category": "news",
-    "headline": "Health aid faces steepest cuts in 2026, OECD figures show",
-    "summary": "Devex reports 16 DAC members are projected to cut US$12 billion in official development assistance in 2026, with G7 countries accounting for US$9.3 billion; health ODA is expected to fall 29-46% from 2024 to 2026, roughly US$5-8 billion.",
-    "source": "Devex",
-    "url": "https://www.devex.com/news/health-oda-faces-steepest-cuts-in-2026-oecd-says-112782",
-    "publishedAt": "2026-07-11T08:35:32Z"
-  },
-  {
-    "id": "2026-07-11-who-core-budget-85",
-    "category": "institutional",
-    "headline": "WHO chief spotlights emergencies as agency mobilises 85% of core budget",
-    "summary": "WHO has mobilised about 85% of the resources needed for its 2026-27 core budget, Director-General Tedros Adhanom Ghebreyesus said, warning the remaining gap will be hard to close after severe bilateral aid cuts disrupted health systems and forced workforce reductions.",
-    "source": "UN News",
-    "url": "https://news.un.org/en/story/2026/07/1167865",
-    "publishedAt": "2026-07-11T08:35:32Z"
-  },
-  {
-    "id": "2026-07-11-mpox-strategy-update",
-    "category": "news",
-    "headline": "WHO and Africa CDC update mpox strategy as clade I cases concentrate",
-    "summary": "WHO and Africa CDC have updated their mpox response strategy amid progress in several outbreak countries, with about 85% of confirmed African cases now concentrated in Madagascar, Guinea, Kenya and Liberia. More than five million vaccine doses have been distributed to 19 countries.",
-    "source": "CIDRAP",
-    "url": "https://www.cidrap.umn.edu/cholera/who-africa-cdc-update-mpox-strategy-amid-progress-outbreak-countries",
-    "publishedAt": "2026-07-11T08:35:32Z"
-  },
-  {
-    "id": "2026-07-11-lancet-tb-pregnancy",
-    "category": "academic",
-    "headline": "Modelling study estimates global TB burden in pregnancy and postpartum",
-    "summary": "A Lancet Global Health rapid review and modelling analysis estimates the global incidence of tuberculosis during pregnancy and the postpartum period, finding that in the WHO African region about 32% of cases occur among women living with HIV.",
-    "source": "The Lancet Global Health",
-    "url": "https://www.thelancet.com/journals/langlo/article/PIIS2214-109X(25)00431-0/fulltext",
-    "publishedAt": "2026-07-11T08:35:32Z"
-  },
-  {
-    "id": "2026-07-11-lancet-us-aid-modelling",
-    "category": "academic",
-    "headline": "Modelling study projects health toll of US foreign assistance cuts",
-    "summary": "A Lancet Global Health modelling study estimates that reductions in US foreign assistance would reverse long-running declines in HIV, tuberculosis, family planning and maternal and child health outcomes across recipient countries, increasing preventable deaths.",
-    "source": "The Lancet Global Health",
-    "url": "https://www.thelancet.com/journals/langlo/article/PIIS2214-109X(25)00281-5/fulltext",
-    "publishedAt": "2026-07-11T08:35:32Z"
   }
 ];
 
